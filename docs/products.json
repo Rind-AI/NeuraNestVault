@@ -1,0 +1,12 @@
+[
+  {
+    "title": "NeuraNest Guided Journal",
+    "description": "A scroll-born journal to inspire clarity and legacy",
+    "price": "19.99",
+    "vendor": "NeuraNest",
+    "handle": "neuranest-guided-journal",
+    "image": "https://via.placeholder.com/300",
+    "sku": "NN-JRN001",
+    "tags": ["journal", "guided", "prompt-agent"]
+  }
+]
