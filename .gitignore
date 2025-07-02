@@ -1,0 +1,24 @@
+# 🔒 Secrets & Tokens
+.env
+.env.*
+
+# 🛠 System Files
+*.log
+*.bak
+*.tmp
+.DS_Store
+Thumbs.db
+
+# 🧠 Vault Sensitive Folders
+config/
+env/
+
+# 🚫 Local Editor Settings
+.vscode/
+.idea/
+*.swp
+
+# 🔁 Node or Python artifacts (if used)
+__pycache__/
+node_modules/
+dist/
