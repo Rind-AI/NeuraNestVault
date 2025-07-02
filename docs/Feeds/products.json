@@ -1,0 +1,29 @@
+[
+  {
+    "id": "prod001",
+    "title": "SmartLaunch Kit",
+    "agent": "ProductAgent",
+    "status": ["generated", "launch-ready"],
+    "description": "A ready-made prompt + content tree for launching new digital products.",
+    "buy_url": "https://your-stripe-or-shopify-link.com/001",
+    "timestamp": "2025-07-04T10:02:00Z"
+  },
+  {
+    "id": "prod002",
+    "title": "ViralPost Reactor",
+    "agent": "ViralContentAgent",
+    "status": ["reviewed", "threaded"],
+    "description": "Auto-generates psychological hook threads based on topic + audience profile.",
+    "buy_url": "https://your-stripe-or-shopify-link.com/002",
+    "timestamp": "2025-07-04T10:04:00Z"
+  },
+  {
+    "id": "prod003",
+    "title": "Prompt-to-Pay Bundle",
+    "agent": "SyncNode",
+    "status": ["live", "stripe-enabled"],
+    "description": "From idea prompt → to Stripe checkout in one automated step.",
+    "buy_url": "https://your-stripe-or-shopify-link.com/003",
+    "timestamp": "2025-07-04T10:06:00Z"
+  }
+]
