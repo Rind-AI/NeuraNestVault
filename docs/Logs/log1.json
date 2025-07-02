@@ -1,0 +1,30 @@
+[
+  {
+    "timestamp": "2025-07-03T00:10:12Z",
+    "agent": "OutreachSignal",
+    "action": "Thread Generation",
+    "status": "success",
+    "message": "Published 3 hooks to Twitter feed queue"
+  },
+  {
+    "timestamp": "2025-07-02T23:50:05Z",
+    "agent": "SyncNode",
+    "action": "Summary Chain Failed",
+    "status": "error",
+    "message": "LangChain memory callback failed @Reducer"
+  },
+  {
+    "timestamp": "2025-07-02T23:44:31Z",
+    "agent": "ResonantFeedback",
+    "action": "Transcript processed",
+    "status": "success",
+    "message": "Converted voice note into core prompt with 91% fidelity"
+  },
+  {
+    "timestamp": "2025-07-02T23:38:11Z",
+    "agent": "SyncNode",
+    "action": "Product categories parsed",
+    "status": "warning",
+    "message": "Only 2 major categories returned"
+  }
+]
