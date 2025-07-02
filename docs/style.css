@@ -1,44 +1,18 @@
-body {
-  font-family: 'Inter', sans-serif;
+.status-success {
+  border-color: #2ecc71;
+}
+.status-warning {
+  border-color: #f1c40f;
+}
+.status-error {
+  border-color: #e74c3c;
+}
+.log-entry h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+}
+.log-entry code {
   background: #f6f8fa;
-  color: #1a1a1a;
-  margin: 0; padding: 2rem;
-  text-align: center;
+  padding: 2px 4px;
+  border-radius: 3px;
 }
-header h1 {
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
-}
-.grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1.5rem;
-  margin-top: 2rem;
-}
-.agent-card {
-  background: #fff;
-  border: 1px solid #ddd;
-  padding: 1.25rem;
-  width: 250px;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  transition: 0.3s ease;
-}
-.agent-card:hover {
-  transform: scale(1.03);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-}
-.role-desc {
-  display: block;
-  margin-top: 0.75rem;
-  color: #555;
-  font-size: 0.9rem;
-}
-footer {
-  margin-top: 3rem;
-  font-size: 0.9rem;
-  color: #777;
-}
-a { color: #0078d4; text-decoration: none; }
-a:hover { text-decoration: underline; }
