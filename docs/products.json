@@ -1,14 +1,11 @@
 [
   {
     "title": "NeuraNest Guided Journal",
-    "description": "A scroll-born journal to inspire clarity and legacy",
-    "price": "19.99",
-    "vendor": "NeuraNest",
-    "handle": "neuranest-guided-journal",
-    "image": "https://via.placeholder.com/400x240",
+    "description": "A scroll-born journal to inspire clarity, creativity, and leave a legacy.",
     "sku": "NN-JRN001",
+    "product_id": "9876543210",
     "agent": "ScrollAgent",
-    "status": ["vault-born", "guided"],
-    "product_id": "1234567890"
+    "image": "https://via.placeholder.com/400x240",
+    "status": ["active"]
   }
 ]
