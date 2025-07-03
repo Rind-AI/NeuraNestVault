@@ -1,11 +1,12 @@
-[
-  {
-    "title":       "NeuraNest Guided Journal",
-    "description": "“A scroll-born journal to inspire clarity and legacy”",
-    "sku":         "NN-JRN001",
-    "product_id":  "51152147906791",
-    "agent":       "ScrollAgent",
-    "image":       "assets/journal-cover.jpg",
-    "status":      ["active"]
-  }
+[  
+  {  
+    "title":       "NeuraNest Guided Journal",  
+    "description": "“A scroll-born journal to inspire clarity and legacy”",  
+    "sku":         "NN-JRN001",  
+-   "product_id":  "51152147906791",   // variant ID (remove)  
++   "product_id":  "9271873536231",    // product ID (correct)  
+    "agent":       "ScrollAgent",  
+    "image":       "assets/journal-cover.jpg",  
+    "status":      ["active"]  
+  }  
 ]
