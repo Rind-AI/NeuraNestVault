@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <title>NeuraNest Storefront | VaultOps</title>
   <link rel="stylesheet" href="style.css" />
-  <script src="vault.js" defer></script>
 </head>
 <body>
   <header>
@@ -19,5 +18,22 @@
   <footer>
     ↩ <a href="index.html">Back to Vault</a> • Powered by NeuraNest™
   </footer>
+
+  <!-- 🔌 Shopify Buy Button SDK -->
+  <script>
+    (function () {
+      var script = document.createElement('script');
+      script.async = true;
+      script.src = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
+      script.onload = () => {
+        console.log("🧠 Shopify SDK loaded");
+        // Only call your product render once Shopify SDK is ready
+        const scriptBridge = document.createElement('script');
+        scriptBridge.src = 'docs/shopifyBridge.js';
+        document.body.appendChild(scriptBridge);
+      };
+      document.head.appendChild(script);
+    })();
+  </script>
 </body>
 </html>
