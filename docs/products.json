@@ -5,8 +5,10 @@
     "price": "19.99",
     "vendor": "NeuraNest",
     "handle": "neuranest-guided-journal",
-    "image": "https://via.placeholder.com/300",
+    "image": "https://via.placeholder.com/400x240",
     "sku": "NN-JRN001",
-    "tags": ["journal", "guided", "prompt-agent"]
+    "agent": "ScrollAgent",
+    "status": ["vault-born", "guided"],
+    "product_id": "1234567890"
   }
 ]
