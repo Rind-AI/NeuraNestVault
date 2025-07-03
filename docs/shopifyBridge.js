@@ -1,56 +1,54 @@
-const vaultFeedUrl = 'Feeds/products.json';
-const storeGrid = document.getElementById('storeGrid');
+// 1. Product feed URL (products.json must live in docs/)
+const vaultFeedUrl = 'products.json';
 
-// Shopify Storefront settings
+// 2. Shopify Storefront credentials
 const shopifyStore = {
   domain: 'kz1nvi-q0.myshopify.com',
-  storefrontToken: 'd04a6007af7fa6353c9d19f306481c71' // Storefront Access Token
+  storefrontToken: 'd04a6007af7fa6353c9d19f306481c71'
 };
 
+// 3. Grid container
+const storeGrid = document.getElementById('storeGrid');
+
+// 4. Load and render products
 async function renderVaultProducts() {
   try {
-    const response = await fetch(vaultFeedUrl);
-    const products = await response.json();
+    const res      = await fetch(vaultFeedUrl);
+    const products = await res.json();
 
-    if (!Array.isArray(products)) throw new Error("Invalid product feed format");
+    if (!Array.isArray(products)) {
+      throw new Error('Invalid product feed format');
+    }
 
-    products.forEach((product, index) => {
-      const targetId = `buy-button-${index}`;
+    storeGrid.innerHTML = '';
+    products.forEach((p, i) => {
+      const mountId = `buy-button-${i}`;
+      const img     = p.image || 'https://via.placeholder.com/400x240';
+      const agent   = p.agent || 'Unknown';
+
       const card = document.createElement('div');
       card.className = 'product-card';
-
       card.innerHTML = `
-        <img src="${product.image}" alt="${product.title}" class="product-image" />
-        <h2>${product.title}</h2>
-        <p><strong>Agent:</strong> ${product.agent}</p>
-        <p>${product.description}</p>
-        <p><strong>Status:</strong> ${product.status?.join(', ')}</p>
-        <p><strong>SKU:</strong> ${product.sku}</p>
-        <div id="${targetId}"></div>
+        <img src="${img}" alt="${p.title}" class="product-image"/>
+        <h2>${p.title}</h2>
+        <p><strong>Agent:</strong> ${agent}</p>
+        <p>${p.description}</p>
+        <p><strong>SKU:</strong> ${p.sku}</p>
+        <div id="${mountId}"></div>
       `;
-
       storeGrid.appendChild(card);
-      createBuyButton(targetId, product.product_id || '1234567890', product.sku);
+
+      initBuyButton(mountId, p.product_id || '0000000000', p.sku);
     });
 
+    console.log(`🧠 Loaded ${products.length} vault products`);
   } catch (err) {
-    console.error("⚠️ Failed to load product memory scrolls:", err);
-    storeGrid.innerHTML = "<p>Failed to render product scrolls. Check console for clues.</p>";
+    console.error('⚠️ Failed to load product memory scrolls:', err);
+    storeGrid.innerHTML = '<p>Failed to render product scrolls. Check console.</p>';
   }
 }
 
-function createBuyButton(targetId, productId, sku) {
-  if (!window.ShopifyBuy) {
-    const script = document.createElement('script');
-    script.src = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
-    script.async = true;
-    script.onload = () => initBuyButton(targetId, productId, sku);
-    document.head.appendChild(script);
-  } else {
-    initBuyButton(targetId, productId, sku);
-  }
-}
-
+// 5. Initialize Shopify Buy Button
 function initBuyButton(targetId, productId, sku) {
   const client = ShopifyBuy.buildClient({
     domain: shopifyStore.domain,
@@ -64,15 +62,15 @@ function initBuyButton(targetId, productId, sku) {
       moneyFormat: '%24%7B%7Bamount%7D%7D',
       options: {
         product: { text: { button: 'Add to cart' } },
-        cart: { text: { title: 'Your Vault Cart', button: 'Checkout' } }
+        cart:    { text: { title: 'Your Vault Cart', button: 'Checkout' } }
       },
       events: {
-        afterInit: function (component) {
+        afterInit(component) {
           component.node.addEventListener('click', () => {
             logVaultSignal({
               timestamp: new Date().toISOString(),
-              sku: sku,
-              event: "Buy Button Clicked"
+              sku,
+              event: 'Buy Button Clicked'
             });
           });
         }
@@ -81,20 +79,23 @@ function initBuyButton(targetId, productId, sku) {
   });
 }
 
+// 6. Click-logging to logs.json
 function logVaultSignal(entry) {
   fetch('logs.json')
     .then(res => res.ok ? res.json() : [])
     .then(logs => {
       logs.push(entry);
-      const blob = new Blob([JSON.stringify(logs, null, 2)], { type: 'application/json' });
+      const blob = new Blob([JSON.stringify(logs, null, 2)], {
+        type: 'application/json'
+      });
       const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
+      const a   = document.createElement('a');
+      a.href     = url;
       a.download = 'logs.json';
       a.click();
     })
-    .catch(err => console.warn("📝 Logging failed:", err));
+    .catch(err => console.warn('📝 Logging failed:', err));
 }
 
-// Initiate scroll rendering
+// Kick it off
 renderVaultProducts();

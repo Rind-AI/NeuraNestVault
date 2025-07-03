@@ -19,21 +19,21 @@
     ↩ <a href="index.html">Back to Vault</a> • Powered by NeuraNest™
   </footer>
 
-  <!-- 🔌 Shopify Buy Button SDK -->
+  <!-- Shopify Buy Button SDK + Bridge Loader -->
   <script>
-  (function(){
-    const sdk = document.createElement('script');
-    sdk.async = true;
-    sdk.src = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
-    sdk.onload = () => {
-      console.log('🧠 Shopify SDK loaded');
-      const bridge = document.createElement('script');
-      // ← Notice no 'docs/' here:
-      bridge.src = 'shopifyBridge.js?v=1.2';
-      document.body.appendChild(bridge);
-    };
-    document.head.appendChild(sdk);
-  })();
-</script>
+    (function () {
+      const sdk = document.createElement('script');
+      sdk.async = true;
+      sdk.src = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
+      sdk.onload = () => {
+        console.log('🧠 Shopify SDK loaded');
+        const bridge = document.createElement('script');
+        // loads shopifyBridge.js from the same folder
+        bridge.src = 'shopifyBridge.js?cachebust=' + Date.now();
+        document.body.appendChild(bridge);
+      };
+      document.head.appendChild(sdk);
+    })();
+  </script>
 </body>
 </html>
