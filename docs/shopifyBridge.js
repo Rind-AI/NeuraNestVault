@@ -1,19 +1,26 @@
-const vaultFeedUrl = 'products.json';
+// —— shopifyBridge.js ——
 
-const shopifyStore = {
-  domain: 'kz1nvi-q0.myshopify.com',
-  storefrontToken: 'd04a6007af7fa6353c9d19f306481c71'
-};
+// 1) Prove the file loaded
+console.log('🛠️ shopifyBridge.js loaded');
 
-const storeGrid = document.getElementById('storeGrid');
+// 2) Cache-bust and trace the feed fetch
+const vaultFeedUrl = `products.json?cb=${Date.now()}`;
+console.log('⏳ Fetching feed from', vaultFeedUrl);
 
 async function renderVaultProducts() {
   try {
     const res = await fetch(vaultFeedUrl);
+    console.log('⚡ products.json status:', res.status);
     const products = await res.json();
-    if (!Array.isArray(products)) throw new Error('Invalid feed');
+    console.log('✅ products.json payload:', products);
 
+    if (!Array.isArray(products)) {
+      throw new Error('Invalid feed: expected an array');
+    }
+
+    const storeGrid = document.getElementById('storeGrid');
     storeGrid.innerHTML = '';
+
     products.forEach((p, i) => {
       const mountId = `buy-button-${i}`;
       const img = p.image || 'https://placehold.co/400x240?text=No+Image';
@@ -40,10 +47,17 @@ async function renderVaultProducts() {
 
     console.log(`🧠 Loaded ${products.length} vault products`);
   } catch (err) {
-    console.error('⚠️ Failed to load product scrolls:', err);
-    storeGrid.innerHTML = '<p>Failed to render products. Check console.</p>';
+    console.error('⚠️ renderVaultProducts error:', err);
+    document.getElementById('storeGrid').innerHTML =
+      '<p>Failed to render products. Check console for details.</p>';
   }
 }
+
+// Shopify store configuration
+const shopifyStore = {
+  domain: 'kz1nvi-q0.myshopify.com',
+  storefrontToken: 'd04a6007af7fa6353c9d19f306481c71'
+};
 
 function initBuyButton(targetId, productId, sku) {
   const client = ShopifyBuy.buildClient({
@@ -58,10 +72,16 @@ function initBuyButton(targetId, productId, sku) {
       moneyFormat: '%24%7B%7Bamount%7D%7D',
       options: {
         product: { text: { button: 'Add to cart' } },
-        cart: { text: { title: 'Your Vault Cart', button: 'Checkout' } }
+        cart: {
+          text: {
+            title: 'Your Vault Cart',
+            button: 'Checkout'
+          }
+        }
       },
       events: {
         afterInit(component) {
+          // Log into your vault download for auditing
           component.node.addEventListener('click', () => {
             logVaultSignal({
               timestamp: new Date().toISOString(),
@@ -77,8 +97,8 @@ function initBuyButton(targetId, productId, sku) {
 
 function logVaultSignal(entry) {
   fetch('logs.json')
-    .then(res => res.ok ? res.json() : [])
-    .then(logs => {
+    .then((res) => (res.ok ? res.json() : []))
+    .then((logs) => {
       logs.push(entry);
       const blob = new Blob([JSON.stringify(logs, null, 2)], {
         type: 'application/json'
@@ -89,7 +109,8 @@ function logVaultSignal(entry) {
       a.download = 'logs.json';
       a.click();
     })
-    .catch(err => console.warn('📝 Logging failed:', err));
+    .catch((err) => console.warn('📝 Logging failed:', err));
 }
 
+// Start the render flow
 renderVaultProducts();
