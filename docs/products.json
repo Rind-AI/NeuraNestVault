@@ -7,5 +7,23 @@
     "agent":       "ScrollAgent",
     "image":       "assets/journal-cover.jpg",
     "status":      ["active"]
+  },
+  {
+    "title":       "NeuraNest Vision Planner",
+    "description": "A structured planner to map your personal and professional goals.",
+    "sku":         "NN-PLN002",
+    "product_id":  "1234567890123",
+    "agent":       "PlannerAgent",
+    "image":       "assets/planner-cover.jpg",
+    "status":      ["active"]
+  },
+  {
+    "title":       "NeuraNest Mindset Cards",
+    "description": "Daily affirmation cards to cultivate a growth mindset.",
+    "sku":         "NN-MND003",
+    "product_id":  "9876543210987",
+    "agent":       "CardsAgent",
+    "image":       "assets/mindset-cards.jpg",
+    "status":      ["active"]
   }
 ]
