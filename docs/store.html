@@ -21,21 +21,19 @@
 
   <!-- 🔌 Shopify Buy Button SDK -->
   <script>
-    (function () {
-      const sdk = document.createElement('script');
-      sdk.async = true;
-      sdk.src = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
-      sdk.onload = () => {
-        console.log("🧠 Shopify SDK loaded");
-        const bridge = document.createElement('script');
-
-        // ← absolute path to your bridge script under /docs
-        bridge.src = 'https://rind-ai.github.io/NeuraNestVault/docs/shopifyBridge.js?v=1.1';
-
-        document.body.appendChild(bridge);
-      };
-      document.head.appendChild(sdk);
-    })();
-  </script>
+  (function(){
+    const sdk = document.createElement('script');
+    sdk.async = true;
+    sdk.src = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
+    sdk.onload = () => {
+      console.log('🧠 Shopify SDK loaded');
+      const bridge = document.createElement('script');
+      // ← Notice no 'docs/' here:
+      bridge.src = 'shopifyBridge.js?v=1.2';
+      document.body.appendChild(bridge);
+    };
+    document.head.appendChild(sdk);
+  })();
+</script>
 </body>
 </html>
