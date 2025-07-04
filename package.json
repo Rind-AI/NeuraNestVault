@@ -1,0 +1,25 @@
+{
+  "name": "neuranestvault",
+  "version": "1.0.0",
+  "description": "**Codename:** Project Moovment: NeuraNest Legacy Mode  \r **Protocol:** MEETme",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "meetme": "node scripts/nn-meetme.js",
+    "meetrind": "npm run meetme"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rind-AI/NeuraNestVault.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Rind-AI/NeuraNestVault/issues"
+  },
+  "homepage": "https://github.com/Rind-AI/NeuraNestVault#readme"
+}
